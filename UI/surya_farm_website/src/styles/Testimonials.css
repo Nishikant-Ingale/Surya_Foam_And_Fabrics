@@ -1,0 +1,30 @@
+@import './variables.css';
+
+.testimonials-page {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.testimonials-page h1 {
+  color: var(--primary-color);
+  margin-bottom: 40px;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.testimonial-card {
+  background: var(--background-color);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}

@@ -1,0 +1,301 @@
+.home-page {
+  width: 100%;
+  overflow: visible;
+  position: relative;
+  background-color: #f9f9f9;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full screen slider */
+  overflow: hidden;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: cover; /* Ensures image covers the area */
+  background-position: center;
+  /* Added for better image scaling on smaller screens if background-size: cover isn't enough */
+  background-repeat: no-repeat;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide-text {
+  position: absolute;
+  bottom: 20px; /* Adjusted for smaller screens */
+  left: 20px; /* Adjusted for smaller screens */
+  color: white;
+  font-size: 18px; /* Adjusted for smaller screens */
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px 15px; /* Adjusted for smaller screens */
+  border-radius: 10px;
+  max-width: calc(
+    100% - 40px
+  ); /* Ensures text doesn't overflow on very small screens */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; /* Adjusted for smaller screens */
+  height: 40px; /* Adjusted for smaller screens */
+  border: none;
+  border-radius: 50%;
+  background: rgba(23, 19, 19, 0.226);
+  color: #fff;
+  font-size: 24px; /* Adjusted for smaller screens */
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(1.5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.slider-button:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.slider-button.prev {
+  left: 15px; /* Adjusted for smaller screens */
+}
+
+.slider-button.next {
+  right: 15px; /* Adjusted for smaller screens */
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 5px;
+  padding: 40px 300px;
+  padding-bottom: 10px;
+  max-width: 100%;
+  text-align: center;
+  background-color: #f9f9f9;
+  justify-items: center;
+}
+
+.feature-item {
+  width: 50px;
+  height: 20px;
+  background: rgba(226, 226, 226, 0);
+  padding: 40px 20px;
+  border-radius: 12px;
+  transition:
+    transform 0.2s ease,
+    background 0.3s ease;
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  background: rgba(24, 23, 23, 0);
+  transform: scale(1.3);
+}
+
+.feature-item h3 {
+  margin-top: 0;
+  color: #323232; /* text color */
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-size: 11px;
+}
+
+.feature-icon svg {
+  width: 30px; /* Added unit */
+  height: 45px;
+  color: #323232; /* icon fill color */
+  transition: color 0.3s ease;
+  stroke-width: 1.5px;
+}
+
+.about-section {
+  padding: 0px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-title h3 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: orangered;
+}
+
+.about-title span {
+  color: #313131; /* Surya brand accent color */
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #313131;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+@keyframes pulse {
+  0% {
+    /* transform: scale(1); */
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    /* transform: scale(1.05); */
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    /* transform: scale(1); */
+  }
+}
+
+.slider-button:hover {
+  animation: pulse 1s ease-out;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .features-grid {
+    padding: 40px 20px;
+    padding-bottom: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+  .feature-item {
+    width: 80px;
+    height: 80px;
+    padding: 30px 10px;
+  }
+
+  .feature-item h3 {
+    font-size: 12px;
+  }
+
+  /* Slider specific improvements for mobile */
+  .slider-container {
+    height: 60vh; /* Adjust height for mobile to prevent it from taking up too much screen space */
+    /* You might want to experiment with `height: auto;` and a `min-height` if the image content is variable. */
+  }
+
+  /* .slide {
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center; 
+  } */
+
+  .slide-text {
+    bottom: 15px;
+    left: 15px;
+    font-size: 16px; /* Slightly smaller text for better fit */
+    padding: 6px 12px;
+  }
+
+  .slider-button {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    /* Optional: Hide buttons on very small screens if they clutter the view */
+    /* display: none; */
+  }
+
+  .slider-button.prev {
+    left: 10px;
+  }
+
+  .slider-button.next {
+    right: 10px;
+  }
+
+  .about-title h3 {
+    font-size: 28px; /* Slightly smaller for mobile */
+  }
+
+  .about-text p {
+    font-size: 15px; /* Slightly smaller for mobile */
+    padding: 0 10px; /* Add some horizontal padding for better readability */
+  }
+}
+
+/* Further adjustments for even smaller screens (e.g., phones in portrait) */
+@media (max-width: 480px) {
+  .slider-container {
+    height: 50vh; /* Even smaller height for very small screens */
+  }
+
+  .slide-text {
+    bottom: 10px;
+    left: 10px;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .slider-button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .slider-button.prev {
+    left: 5px;
+  }
+
+  .slider-button.next {
+    right: 5px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(60px, 1fr)
+    ); /* Adjust feature item size */
+    padding: 20px 10px;
+  }
+
+  .feature-item {
+    width: 60px;
+    height: 60px;
+    padding: 20px 5px;
+  }
+
+  .feature-item h3 {
+    font-size: 10px;
+  }
+
+  .feature-icon svg {
+    width: 25px;
+    height: 35px;
+  }
+
+  .about-title h3 {
+    font-size: 24px;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    padding: 0 5px;
+  }
+}

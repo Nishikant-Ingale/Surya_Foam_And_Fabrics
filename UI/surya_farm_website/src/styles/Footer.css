@@ -1,0 +1,144 @@
+/* === Compact Modern Footer === */
+.footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 30px 15px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* Each Section */
+.footer-section {
+  flex: 1 1 250px;
+  min-width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.footer-section:hover {
+  transform: translateY(-2px);
+}
+
+/* Headings */
+.footer-section h3,
+.footer-section h4 {
+  color: #4caf50;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.footer-section p {
+  margin: 0 0 6px;
+  line-height: 1.5;
+  font-size: 13.5px;
+}
+
+/* Links */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin: 4px 0;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 13.5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 1px;
+  left: 0;
+  bottom: -2px;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #4caf50;
+}
+
+.footer-section ul li a:hover::after {
+  width: 100%;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 12px;
+  border-top: 1px solid #2a2a2a;
+  font-size: 12.5px;
+  color: #888;
+}
+
+/* ===== Mobile View Fixes ===== */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .footer-section {
+    flex: 1 1 100%;
+    min-width: auto;
+    padding: 0;
+  }
+
+  .footer-section h3,
+  .footer-section h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .footer-section p,
+  .footer-section ul li a {
+    font-size: 13px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    margin-top: 15px;
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 25px 10px 15px;
+  }
+
+  .footer-section h3,
+  .footer-section h4 {
+    font-size: 13.5px;
+  }
+
+  .footer-section p,
+  .footer-section ul li a {
+    font-size: 12.5px;
+  }
+
+  .footer-bottom {
+    font-size: 11.5px;
+  }
+}

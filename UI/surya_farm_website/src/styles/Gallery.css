@@ -1,0 +1,24 @@
+@import './variables.css';
+
+.gallery-page {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.gallery-page h1 {
+  color: var(--primary-color);
+  margin-bottom: 40px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.gallery-item {
+  background: var(--background-color);
+  height: 200px;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+}

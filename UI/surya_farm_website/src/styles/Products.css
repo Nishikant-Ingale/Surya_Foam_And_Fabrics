@@ -1,0 +1,302 @@
+.products-page {
+  padding: 40px 20px;
+  background-color: #f0f2f5;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.8rem;
+  color: #2c3e50;
+}
+
+.category-section {
+  margin-bottom: 50px;
+}
+
+.category-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  border-left: 5px solid #3498db;
+  padding-left: 10px;
+}
+
+/* Scroll Wrapper */
+.product-scroll-wrapper {
+  position: relative;
+}
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  background-color: rgba(0, 0, 0, 0.6); /* Deeper, semi-transparent black */
+  color: #ffffff; /* Bright white icon */
+  border: none; /* No border for a very clean look */
+  border-radius: 50%;
+  width: 48px; /* Slightly larger for a bolder statement */
+  height: 48px;
+  font-size: 1.6rem; /* Prominent icon size */
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* More pronounced, defined shadow */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+  /* Smooth all-property transition */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* A common, smooth cubic-bezier for interaction */
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Even darker on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+  transform: translateY(-50%) scale(1.1); /* More noticeable pop */
+}
+
+.scroll-btn.left {
+  left: 20px; /* Standard positioning */
+}
+
+.scroll-btn.right {
+  right: 20px;
+}
+
+.products-grid {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.products-grid::-webkit-scrollbar {
+  display: none;
+}
+
+
+.product-card {
+  flex: 0 0 auto;
+  width: 240px;
+  height: 410px; /* ✅ Set a fixed height */
+  background-color: #fff;
+  border-radius: 12px;
+  margin-right: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.product-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #e0e0e0;
+}
+
+/* Ensure text area doesn’t push height unexpectedly */
+.product-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: #333;
+  min-height: 40px; /* Reserve space */
+  overflow: hidden;
+}
+
+.product-card p {
+  font-size: 0.92rem;
+  color: #666;
+  line-height: 1.4;
+  flex-grow: 1; /* Stretch to fill space */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-card {
+    width: 200px;
+    height: 380px;
+  }
+
+  .product-image {
+    height: 140px;
+  }
+
+  .scroll-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+}
+
+/* General Mobile Optimizations */
+@media (max-width: 768px) {
+  .products-page {
+    padding: 30px 15px; /* Slightly reduce padding on smaller tablets */
+  }
+
+  h1 {
+    font-size: 2.2rem; /* Adjust heading size for better fit */
+    margin-bottom: 30px;
+  }
+
+  .category-section {
+    margin-bottom: 40px; /* Reduce space between categories */
+  }
+
+  .category-section h2 {
+    font-size: 1.4rem; /* Smaller category titles */
+    padding-left: 8px; /* Maintain good visual separation */
+  }
+
+  /* Scroll Buttons for Tablets */
+  .scroll-btn {
+    width: 40px; /* Slightly smaller buttons */
+    height: 40px;
+    font-size: 1.4rem; /* Adjusted icon size */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Softer shadow */
+  }
+
+  .scroll-btn.left {
+    left: 10px; /* Closer to the edge */
+  }
+
+  .scroll-btn.right {
+    right: 10px; /* Closer to the edge */
+  }
+
+  /* Product Cards for Tablets */
+  .product-card {
+    width: 220px; /* Adjust width for tablets */
+    height: 390px; /* Maintain proportion */
+    margin-right: 15px; /* Reduce spacing between cards */
+    padding: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07); /* Lighter shadow */
+  }
+
+  .product-image {
+    height: 150px; /* Adjust image height */
+  }
+
+  .product-card h3 {
+    font-size: 1.05rem; /* Slightly smaller title */
+    min-height: 38px;
+  }
+
+  .product-card p {
+    font-size: 0.9rem; /* Slightly smaller description */
+  }
+}
+
+@media (max-width: 480px) {
+  .products-page {
+    padding: 20px 10px; /* More aggressive padding reduction for phones */
+  }
+
+  h1 {
+    font-size: 1.8rem; /* Significantly smaller heading */
+    margin-bottom: 25px;
+  }
+
+  .category-section {
+    margin-bottom: 30px;
+  }
+
+  .category-section h2 {
+    font-size: 1.2rem; /* Even smaller category titles */
+    padding-left: 6px;
+    border-left: 4px solid #3498db; /* Slightly thinner border */
+  }
+
+  /* Scroll Buttons for Phones */
+  .scroll-btn {
+    width: 36px; /* Smaller buttons on phones */
+    height: 36px;
+    font-size: 1.3rem; /* Adjusted icon size */
+    /* Often, on very small screens, you might consider hiding scroll buttons if swiping is the primary interaction.
+       Or, make them less intrusive. For now, we'll keep them but adjust. */
+    background-color: rgba(0, 0, 0, 0.5); /* Lighter semi-transparent */
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25); /* Even softer shadow */
+  }
+
+  .scroll-btn.left {
+    left: 5px; /* Closer to the edge */
+  }
+
+  .scroll-btn.right {
+    right: 5px; /* Closer to the edge */
+  }
+
+  /* Product Cards for Phones */
+  .product-card {
+    width: 160px; /* Optimal width for smaller phone screens */
+    height: 360px; /* Adjusted height */
+    margin-right: 10px; /* Minimal spacing between cards */
+    padding: 10px;
+    border-radius: 10px; /* Slightly less rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Lighter shadow for mobile */
+  }
+
+  .product-image {
+    height: 110px; /* Adjusted image height for phones */
+    border-radius: 8px; /* Slightly less rounded image corners */
+    margin-bottom: 8px;
+  }
+
+  .product-card h3 {
+    font-size: 0.95rem; /* Fine-tuned product title size */
+    margin-bottom: 4px;
+    min-height: 36px;
+  }
+
+  .product-card p {
+    font-size: 0.82rem; /* Compact description font size */
+    line-height: 1.3; /* Slightly tighter line height */
+  }
+}
+
+/* Even smaller screens (e.g., old/small phones) - if needed */
+@media (max-width: 360px) {
+  .product-card {
+    width: 140px; /* Further reduction for very small screens */
+    height: 340px;
+  }
+
+  .product-image {
+    height: 100px;
+  }
+
+  .product-card h3 {
+    font-size: 0.9rem;
+    min-height: 34px;
+  }
+
+  .product-card p {
+    font-size: 0.8rem;
+  }
+
+  .scroll-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+}

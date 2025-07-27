@@ -1,0 +1,13 @@
+@import './variables.css';
+
+.about-page {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--text-color);
+}
+
+.about-page h1 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}

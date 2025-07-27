@@ -1,0 +1,32 @@
+.floating-button {
+  position: fixed;
+  right: 20px;
+  z-index: 100;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.floating-button:hover {
+  transform: scale(1.1);
+}
+
+.floating-button img {
+  width: 35px;
+  height: 35px;
+}
+
+.floating-button.whatsapp {
+  bottom: 90px;
+  background-color: #25D366;
+}
+
+.floating-button.instagram {
+  bottom: 20px;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
