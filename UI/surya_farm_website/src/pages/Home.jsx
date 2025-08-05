@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Home.css";
 import Button from "../components/Button";
+import ProductCategories from "../components/ProductCategories";
+
 import {
   Droplet,
   Baby,
@@ -95,13 +97,13 @@ const Home = () => {
         ))}
       </div>
 
-      <div class="about-section">
-        <div class="about-title">
+      <div className="about-section">
+        <div className="about-title">
           <h3>
             About <span>Surya Forms & Fabrics</span>
           </h3>
         </div>
-        <div class="about-text">
+        <div className="about-text">
           <p>
             At Surya Foam & Fabrics, we blend comfort with craftsmanship.
             Specializing in premium-quality mattresses, cushions, and upholstery
@@ -113,6 +115,7 @@ const Home = () => {
           </p>
         </div>
       </div>
+      <ProductCategories />
     </div>
   );
 };

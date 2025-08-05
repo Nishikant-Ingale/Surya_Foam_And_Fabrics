@@ -46,30 +46,4 @@ public class RouteController {
         // Forward all React frontend paths to index.html
         return "forward:/index.html";
     }
-
-
-//    @RequestMapping(value = {"/", "/ui", "/ui/{path:[^\\.]*}", "/ui/{path:^(?!static$).*}/{path2:[^\\.]*}"})
-//    public String forwardWebsiteRoutes(HttpServletRequest request) {
-//        String uri = request.getRequestURI();
-//        System.out.println("RouteController Intercepted URI: " + uri);
-//        if (uri.matches(".*\\.(js|css|map|ico|png|jpg|jpeg|svg|json|txt)$") || uri.startsWith("/static/") || uri.startsWith("/website/static/") || // This is crucial for assets within /feedback/
-//                uri.startsWith("/api/")) {             // Exclude API calls
-//            System.out.println("⛔ Skipping static asset or API path: " + uri);
-//            return null; // Let Spring's default static resource handler take over
-//        }
-//        if (uri.equals("/ui") || uri.equals("/ui/")) {
-//            System.out.println("✅ Forwarding base /website or /website/ to /website/index.html: " + uri);
-//            return "forward:/index.html";
-//        }
-//        if (uri.startsWith("/website/")) {
-//            System.out.println("✅ Forwarding SPA route under /website/ to /website/index.html: " + uri);
-//            return "forward:/index.html";
-//        }
-//        if (uri.equals("/")) {
-//            System.out.println("✅ Forwarding root '/' to /website/index.html: " + uri);
-//            return "forward:/index.html";
-//        }
-//        System.out.println("❓ Unhandled URI in RouteController: " + uri);
-//        return null;
-//    }
 }
