@@ -32,7 +32,7 @@
   display: flex; /* Flexbox for horizontal layout */
   flex-wrap: nowrap; /* 🔥 Crucial: Prevent wrapping, keep in single line */
   overflow-x: auto; /* 🔥 Enable horizontal scrolling if content exceeds width */
-  justify-content: center;
+  justify-content: flex-start;
   overflow-y: hidden; /* Hide vertical scrollbar */
   padding-bottom: 20px; /* Space for scrollbar (if visible) and bottom shadow */
   scroll-behavior: smooth; /* Smooth scrolling when programmatically scrolled */
@@ -42,6 +42,7 @@
   /* margin: 0 auto; */ /* Remove auto margin if you want it to span full width for scrolling */
   padding-left: 20px; /* Add some padding on the left so the first card isn't against the edge */
   padding-right: 20px; /* Add some padding on the right */
+  box-sizing: border-box;
 }
 
 /* Hide scrollbar for a cleaner look (optional, but common for horizontal scrolls) */

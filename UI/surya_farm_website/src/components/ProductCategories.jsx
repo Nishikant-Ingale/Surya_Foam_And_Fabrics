@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import "../styles/ProductCategories.css";
+import { useNavigate } from "react-router-dom";
+
 
 const categories = [
   {
@@ -35,7 +35,17 @@ const categories = [
   },
 ];
 
+
+
+
 const ProductCategories = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (category) => {
+    // You can pass category name or id depending on your route structure
+    navigate(`/ui/products`); 
+  };
+
   return (
     <section className="product-category-section">
       <h2>Product Categories</h2>
@@ -45,6 +55,7 @@ const ProductCategories = () => {
             className="product-card"
             key={index}
             style={{ backgroundImage: `url(${category.image})` }}
+            onClick={() => handleCardClick(category)} // 🔥 Make card clickable
           >
             <div className="product-card-content">
               <h3>{category.name}</h3>
