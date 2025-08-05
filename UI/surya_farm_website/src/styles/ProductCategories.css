@@ -1,0 +1,254 @@
+/* Base Styles for Product Categories Section */
+.product-category-section {
+  text-align: center;
+  background: #f8f8f8; /* Slightly lighter background */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 40px;
+}
+
+.product-category-section h2 {
+  margin-bottom: 40px; /* More space below heading */
+  font-size: 2.5rem; /* Slightly larger, more impactful heading */
+  color: #2c3e50; /* Darker, more professional text color */
+  position: relative;
+  display: inline-block; /* To apply pseudo-elements correctly */
+}
+
+/* Underline effect for heading */
+.product-category-section h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px; /* Position below text */
+  transform: translateX(-50%);
+  width: 60px; /* Width of the underline */
+  height: 4px; /* Thickness of the underline */
+  background-color: orangered; /* A vibrant blue accent */
+  border-radius: 2px;
+}
+
+/* --- Desktop / Horizontal Scroll Layout --- */
+.product-card-container {
+  display: flex; /* Flexbox for horizontal layout */
+  flex-wrap: nowrap; /* 🔥 Crucial: Prevent wrapping, keep in single line */
+  overflow-x: auto; /* 🔥 Enable horizontal scrolling if content exceeds width */
+  justify-content: center;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  padding-bottom: 20px; /* Space for scrollbar (if visible) and bottom shadow */
+  scroll-behavior: smooth; /* Smooth scrolling when programmatically scrolled */
+  -webkit-overflow-scrolling: touch; /* Enhance scrolling on iOS */
+  gap: 30px; /* Space between cards */
+  /* max-width: 1200px; /* You can keep this if you want a max-width for the scroll container */
+  /* margin: 0 auto; */ /* Remove auto margin if you want it to span full width for scrolling */
+  padding-left: 20px; /* Add some padding on the left so the first card isn't against the edge */
+  padding-right: 20px; /* Add some padding on the right */
+}
+
+/* Hide scrollbar for a cleaner look (optional, but common for horizontal scrolls) */
+.product-card-container::-webkit-scrollbar {
+  display: none; /* For Webkit browsers (Chrome, Safari) */
+}
+.product-card-container {
+  scrollbar-width: none; /* For Firefox */
+}
+
+.product-card {
+  flex: 0 0 auto; /* 🔥 Crucial: Prevent cards from shrinking/growing, maintain fixed size */
+  width: 280px !important; /* Fixed width for each card */
+  height: 380px; /* Fixed height for each card */
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* More pronounced, soft shadow */
+  cursor: pointer;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    /* Smoother transform */ box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02); /* More noticeable lift and slight scale */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+  border-radius: 15px;
+}
+
+/* Subtle overlay effect for all cards */
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2); /* Light transparent black overlay */
+  transition: background 0.4s ease;
+  z-index: 1; /* Below content, above image */
+}
+
+.product-card:hover::before {
+  background: rgba(0, 0, 0, 0.4); /* Darker overlay on hover */
+}
+
+/* --- Content Overlay (Hover from Left) --- */
+.product-card-content {
+  position: absolute;
+  top: 0; /* Start from the top of the card */
+  left: 0; /* Start from the left of the card */
+  width: 100%;
+  height: 100%; /* Take full height of the card */
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0) 100%
+  ); /* Gradient from left to right */
+  color: #fff;
+  padding: 20px; /* Generous padding */
+  border-radius: 15px;
+  box-sizing: border-box; /* Include padding in width/height */
+  transform: translateX(-100%); /* 🔥 Start completely off-screen to the left */
+  opacity: 0; /* Start invisible */
+  display: flex; /* Flex for internal alignment */
+  flex-direction: column;
+  justify-content: flex-end; /* Push content to the bottom of the overlay */
+  text-align: left; /* Align text to the left */
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    /* Smooth reveal */ opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 2; /* Above the overlay */
+}
+
+.product-card:hover .product-card-content {
+  transform: translateX(0); /* 🔥 Slide fully into view */
+  opacity: 1; /* Fully visible on hover */
+}
+
+.product-card h3 {
+  margin: 0 0 10px 0; /* Margin for separation */
+  font-size: 1.5rem; /* Larger heading for impact */
+  line-height: 1.2;
+  color: #fff !important;
+}
+
+.product-card .description {
+  font-size: 1rem; /* Clearer description text */
+  line-height: 1.5;
+  opacity: 0.9; /* Slightly less opaque for subtle effect */
+}
+
+/* --- Mobile Optimizations (Column Layout) --- */
+@media (max-width: 768px) {
+  .product-category-section {
+    padding: 40px 15px; /* Adjust section padding for tablets */
+  }
+
+  .product-category-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .product-card-container {
+    flex-direction: column; /* 🔥 Stack cards vertically */
+    align-items: center; /* Center cards in the column */
+    gap: 20px; /* Space between stacked cards */
+    padding: 0 10px; /* Add horizontal padding to the container */
+    overflow-x: hidden; /* Disable horizontal scrolling on mobile */
+    justify-content: center; /* Center horizontally if max-width applied */
+  }
+
+  .product-card {
+    flex: 0 0 auto; /* Reset flex properties for column layout */
+    width: 100%; /* Take full width of parent (container's padding) */
+    max-width: 320px; /* Constrain max width for larger phones/smaller tablets */
+    height: 220px; /* Reduced height for mobile */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12); /* Softer shadow */
+    transition: none; /* Disable hover transitions on touch devices */
+  }
+
+  /* No hover effects on mobile/touch devices */
+  .product-card:hover {
+    transform: none;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12); /* Keep consistent shadow */
+  }
+
+  /* Mobile "Automation": Content always visible with darker overlay */
+  .product-card::before {
+    background: rgba(
+      0,
+      0,
+      0,
+      0.5
+    ); /* Darker overlay for readability on mobile */
+  }
+  .product-card:hover::before {
+    /* Remove hover specific darker overlay */
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Mobile Content Display: Always visible, overlaying the bottom */
+  .product-card-content {
+    top: auto; /* Remove top constraint */
+    bottom: 0; /* Pin to the bottom */
+    height: auto; /* Allow height to adjust to content */
+    transform: translateX(0); /* Always visible on mobile */
+    opacity: 1; /* Always opaque on mobile */
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.1) 100%
+    ); /* Gradient from bottom up for mobile */
+    padding: 15px 12px;
+    justify-content: flex-start; /* Content starts from the top of its overlay */
+    text-align: center; /* Center text in mobile overlay */
+  }
+
+  .product-card h3 {
+    font-size: 1.15rem; /* Adjust heading size */
+    margin: 0 0 5px 0;
+  }
+
+  .product-card .description {
+    font-size: 0.85rem; /* Adjust description size */
+    line-height: 1.4;
+    opacity: 0.95; /* Make it more opaque for readability */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-category-section {
+    padding: 30px 10px;
+  }
+
+  .product-category-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .product-card-container {
+    gap: 15px;
+    padding: 0 5px; /* Smaller horizontal padding */
+  }
+
+  .product-card {
+    max-width: 280px; /* Further constrain max-width for small phones */
+    height: 200px; /* Slightly smaller height */
+    border-radius: 10px;
+  }
+
+  .product-card-content {
+    padding: 12px 10px;
+  }
+
+  .product-card h3 {
+    font-size: 1rem;
+    margin: 0 0 3px 0;
+  }
+
+  .product-card .description {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+}
