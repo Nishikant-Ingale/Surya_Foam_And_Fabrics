@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import "../styles/Products.css";
-import SmartImage from "../components/SmartImage";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const categories = [
   {
@@ -197,7 +196,7 @@ const categories = [
   },
 ];
 
-const Products = () => {
+const App = () => {
   const scrollRefs = useRef({});
   const [scrollVisible, setScrollVisible] = useState({});
 
@@ -229,43 +228,53 @@ const Products = () => {
   };
 
   return (
-    <div className="products-page">
-      <h1>Our Products</h1>
+    <div className="bg-gray-100 p-5 md:p-10 font-sans">
+      <h1 className="text-center text-4xl sm:text-5xl font-extrabold mb-10 text-gray-800">Our Products</h1>
+      
       {categories.map((category) => (
-        <div key={category.id} className="category-section">
-          <h2>{category.title}</h2>
+        <div key={category.id} className="mb-12">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-gray-800 border-l-4 border-indigo-600 pl-4">
+            {category.title}
+          </h2>
 
-          <div className="product-scroll-wrapper">
+          <div className="relative">
             {scrollVisible[category.id] && (
               <>
                 <button
-                  className="scroll-btn left"
+                  className="absolute top-1/2 -translate-y-1/2 left-5 z-10 bg-black/60 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all duration-300 hover:bg-black/80 hover:scale-110 hover:shadow-2xl"
                   onClick={() => scroll(category.id, "left")}
                 >
-                  &#8592;
+                  <ChevronLeft size={24} />
                 </button>
                 <button
-                  className="scroll-btn right"
+                  className="absolute top-1/2 -translate-y-1/2 right-5 z-10 bg-black/60 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all duration-300 hover:bg-black/80 hover:scale-110 hover:shadow-2xl"
                   onClick={() => scroll(category.id, "right")}
                 >
-                  &#8594;
+                  <ChevronRight size={24} />
                 </button>
               </>
             )}
 
             <div
-              className="products-grid"
+              className="flex overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden gap-6 px-1"
               ref={(el) => (scrollRefs.current[category.id] = el)}
             >
               {category.products.map((product, index) => (
-                <div className="product-card" key={index}>
-                  <SmartImage
+                <div 
+                  className="flex-none w-60 sm:w-52 md:w-64 h-[410px] sm:h-[380px] md:h-[410px] bg-white rounded-xl p-4 flex flex-col items-start shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl snap-center" 
+                  key={index}
+                >
+                  <img
                     src={product.image}
                     alt={product.name}
-                    className="product-image"
+                    className="w-full h-40 object-cover rounded-lg mb-2"
                   />
-                  <h3>{product.name}</h3>
-                  <p>{product.description}</p>
+                  <h3 className="text-lg font-semibold mb-1 text-gray-800 min-h-[40px] overflow-hidden">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-tight flex-grow overflow-hidden text-ellipsis">
+                    {product.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -276,4 +285,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default App;

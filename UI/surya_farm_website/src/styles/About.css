@@ -1,13 +1,80 @@
-@import './variables.css';
-
 .about-page {
-  padding: 60px 20px;
-  max-width: 900px;
-  margin: 0 auto;
+  background: #fdfdfd;
   color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
-.about-page h1 {
-  color: var(--primary-color);
-  margin-bottom: 20px;
+/* Hero Section */
+.about-hero {
+  background: linear-gradient(135deg, var(--primary-color), #ffb347);
+  color: white;
+  text-align: center;
+  padding: 90px 20px 70px;
+  border-radius: 0 0 40px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.about-tagline {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  font-style: italic;
+}
+
+/* Paragraph Section */
+.about-text-section {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.about-para {
+  font-size: 1.2rem;
+  line-height: 2;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-in-out;
+  position: relative;
+  text-align: justify;
+}
+
+/* Fade-in Animation */
+.about-para.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Elegant Divider */
+.about-para:not(:last-child)::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--primary-color);
+  margin: 40px auto 0;
+  border-radius: 3px;
+  opacity: 0.2;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-tagline {
+    font-size: 1.1rem;
+  }
+
+  .about-para {
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+  }
 }

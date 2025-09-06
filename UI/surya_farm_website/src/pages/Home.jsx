@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "../styles/Home.css";
-import Button from "../components/Button";
+// src/components/Home.jsx
+import React from "react";
 import ProductCategories from "../components/ProductCategories";
-
+import Slider from "../components/Slider";
+import FeaturesGrid from "../components/FeaturesGrid";
 import {
   Droplet,
   Baby,
@@ -14,108 +14,54 @@ import {
   Flame,
 } from "lucide-react";
 
+const features = [
+  { icon: <Droplet size={32} />, label: "Water Repellent" },
+  { icon: <Baby size={32} />, label: "Child Friendly" },
+  { icon: <Glasses size={32} />, label: "Party Friendly" },
+  { icon: <PawPrint size={32} />, label: "Pet Friendly" },
+  { icon: <ShieldCheck size={32} />, label: "Durable" },
+  { icon: <SprayCan size={32} />, label: "Easy Clean" },
+  { icon: <Sparkles size={32} />, label: "Stain Friendly" },
+  { icon: <Flame size={32} />, label: "Fire Retardant" },
+];
+
 const Home = () => {
-  const [images, setImages] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const features = [
-    { icon: <Droplet size={32} />, label: "Water Repellent" },
-    { icon: <Baby size={32} />, label: "Child Friendly" },
-    { icon: <Glasses size={32} />, label: "Party Friendly" },
-    { icon: <PawPrint size={32} />, label: "Pet Friendly" },
-    { icon: <ShieldCheck size={32} />, label: "Durable" },
-    { icon: <SprayCan size={32} />, label: "Easy Clean" },
-    { icon: <Sparkles size={32} />, label: "Stain Friendly" },
-    { icon: <Flame size={32} />, label: "Fire Retardant" },
-  ];
-
-  // Load images dynamically from assets/slider_imgs
-  useEffect(() => {
-    const imageModules = import.meta.glob(
-      "../assets/slider_img/*.{jpg,jpeg,png,svg}",
-      {
-        eager: true,
-        import: "default",
-      }
-    );
-    const loadedImages = Object.values(imageModules);
-    setImages(loadedImages);
-  }, []);
-
-  // Auto-slide
-  useEffect(() => {
-    if (images.length === 0) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 10000); // Change slide every 10 seconds
-    return () => clearInterval(interval);
-  }, [images]);
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
   return (
-    <div className="home-page">
-      <div className="slider-container">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`slide ${index === currentIndex ? "active" : ""}`}
-            style={{ backgroundImage: `url(${image})` }}
-          >
-            {index === currentIndex && (
-              <div className="slide-text">
-                <h2>Slide {index + 1}</h2>
-              </div>
-            )}
-          </div>
-        ))}
-
-        {/* Navigation Buttons */}
-        {images.length > 0 && (
-          <>
-            <button className="slider-button prev" onClick={handlePrev}>
-              &#10094;
-            </button>
-            <button className="slider-button next" onClick={handleNext}>
-              &#10095;
-            </button>
-          </>
-        )}
-      </div>
-      {/* Features Grid Section */}
-      <div className="features-grid">
-        {features.map((feature, index) => (
-          <div className="feature-item" key={index}>
-            <div className="feature-icon">{feature.icon}</div>
-            <h3>{feature.label}</h3>
-          </div>
-        ))}
-      </div>
-
-      <div className="about-section">
-        <div className="about-title">
-          <h3>
-            About <span>Surya Forms & Fabrics</span>
-          </h3>
+    <div className="bg-white font-sans min-h-screen">
+      <Slider />
+      {/* Features Section */}
+      <section className="bg-gray-50 py-12 md:py-16 px-4 md:px-12">
+        <div className="container mx-auto max-w-6xl">
+          <FeaturesGrid features={features} />
         </div>
-        <div className="about-text">
-          <p>
-            At Surya Foam & Fabrics, we blend comfort with craftsmanship.
-            Specializing in premium-quality mattresses, cushions, and upholstery
-            fabrics, we are dedicated to enriching homes with comfort and
-            elegance. Our products reflect a perfect fusion of innovation and
-            tradition, ensuring durability, design, and exceptional comfort.
-            Proudly rooted in Indian values, we strive to redefine the way India
-            relaxes, one home at a time.
-          </p>
+      </section>
+
+      {/* About Section */}
+      <section className="bg-gray-50 py-8 md:py-12 px-4 md:px-12">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
+            <h3 className="text-3xl sm:text-4xl font-bold text-orange-600 mb-4">
+              About <span className="text-gray-800">Surya Forms & Fabrics</span>
+            </h3>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              At Surya Foam & Fabrics, we blend comfort with craftsmanship.
+              Specializing in premium-quality mattresses, cushions, and upholstery
+              fabrics, we are dedicated to enriching homes with comfort and
+              elegance. Our products reflect a perfect fusion of innovation and
+              tradition, ensuring durability, design, and exceptional comfort.
+              Proudly rooted in Indian values, we strive to redefine the way India
+              relaxes, one home at a time.
+            </p>
+          </div>
         </div>
-      </div>
-      <ProductCategories />
+      </section>
+      
+      {/* Product Categories Section */}
+      <section className="bg-gray-50 py-12 md:py-16 px-4 md:px-12">
+        <div className="container mx-auto max-w-6xl flex justify-center">
+          <ProductCategories />
+        </div>
+      </section>
     </div>
   );
 };

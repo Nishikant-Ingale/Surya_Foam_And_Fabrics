@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import AboutContact from "./pages/AboutContact";
 import Contact from "./pages/Contact";
 import Products from "./pages/Products";
 import Gallery from "./pages/Gallery";
@@ -17,7 +18,7 @@ const App = () => {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/ui/about" element={<About />} />
+          <Route path="/ui/about" element={<AboutContact />} />
           <Route path="/ui/products" element={<Products />} />
           <Route path="/ui/contact" element={<Contact />} />
           <Route path="/ui/gallery" element={<Gallery />} />
