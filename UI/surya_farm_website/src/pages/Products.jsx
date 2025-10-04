@@ -136,7 +136,7 @@ const categories = [
         name: "Sky Light Blinds",
         image: "/images/products/skylight_blinds.png",
         description:
-          "Custom-fitted for skylights, these blinds offer glare reduction and heat protection while allowing you to control natural light beautifully.",
+          "Custom-fitted for skylights, these blinds offers glare reduction and heat protection while allowing you to control natural light beautifully.",
       },
       {
         name: "Monsoon Blinds",
@@ -199,6 +199,32 @@ const categories = [
 const App = () => {
   const scrollRefs = useRef({});
   const [scrollVisible, setScrollVisible] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // This effect runs only once when the component mounts
+    // It sets isLoaded to true after a slight delay to trigger the on-load animation
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
+    useEffect(() => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+  
+      elements.forEach(el => observer.observe(el));
+      return () => observer.disconnect();
+    }, []);
 
   useEffect(() => {
     const checkScrollVisibility = () => {
@@ -229,11 +255,11 @@ const App = () => {
 
   return (
     <div className="bg-gray-100 p-5 md:p-10 font-sans">
-      <h1 className="text-center text-4xl sm:text-5xl font-extrabold mb-10 text-gray-800">Our Products</h1>
+      <h1 className={`text-center text-4xl sm:text-5xl font-extrabold mb-10 text-gray-800 animate-on-load ${isLoaded ? 'is-visible' : ''}`}>Our Products</h1>
       
       {categories.map((category) => (
-        <div key={category.id} className="mb-12">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-gray-800 border-l-4 border-indigo-600 pl-4">
+        <div key={category.id} className="mb-12 animate-on-scroll">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-gray-800 border-l-4 border-indigo-600 pl-4 animate-on-scroll">
             {category.title}
           </h2>
 
@@ -261,13 +287,15 @@ const App = () => {
             >
               {category.products.map((product, index) => (
                 <div 
-                  className="flex-none w-60 sm:w-52 md:w-64 h-[410px] sm:h-[380px] md:h-[410px] bg-white rounded-xl p-4 flex flex-col items-start shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl snap-center" 
+                  className="flex-none w-60 sm:w-52 md:w-64 h-[410px] sm:h-[380px] md:h-[410px] bg-white rounded-xl p-4 flex flex-col items-start shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl snap-center animate-on-scroll" 
                   key={index}
+                  style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   <img
                     src={product.image}
                     alt={product.name}
                     className="w-full h-40 object-cover rounded-lg mb-2"
+                    loading="lazy"
                   />
                   <h3 className="text-lg font-semibold mb-1 text-gray-800 min-h-[40px] overflow-hidden">
                     {product.name}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, CheckCircle, XCircle, Users, Sun, Gem } from 'lucide-react';
+import suryaBanner from '../assets/suryafoambanner.jpeg';
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -29,17 +30,48 @@ const App = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setStatus(null);
+  //   try {
+  //     await new Promise((resolve) => setTimeout(resolve, 1500));
+  //     setStatus({ type: 'success', message: 'Message sent successfully!' });
+  //     setFormData({ name: '', email: '', message: '' });
+  //   } catch {
+  //     setStatus({ type: 'error', message: 'Failed to send message. Please try again.' });
+  //   }
+  // };
+
+
+//   template must be the following in EmailJS
+//   From: {{from_name}} ({{from_email}})
+// Message: {{message}}
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus(null);
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await emailjs.send(
+        "YOUR_SERVICE_ID",     // from EmailJS dashboard
+        "YOUR_TEMPLATE_ID",    // from EmailJS template
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: "suryafoam933@yahoo.in", // recipient
+        },
+        "YOUR_PUBLIC_KEY"      // from EmailJS account
+      );
+
       setStatus({ type: 'success', message: 'Message sent successfully!' });
       setFormData({ name: '', email: '', message: '' });
-    } catch {
+    } catch (error) {
+      console.error("EmailJS Error:", error);
       setStatus({ type: 'error', message: 'Failed to send message. Please try again.' });
     }
   };
+
 
   const handleGenerateDraft = async () => {
     setIsGenerating(true);
@@ -143,7 +175,8 @@ const App = () => {
             </div>
             <div className="relative p-6 bg-gray-100 rounded-3xl shadow-xl border border-gray-200">
               <img
-                src="https://placehold.co/600x400/f3f4f6/334155?text=Quality+Craftsmanship"
+                src={suryaBanner}
+                // src="https://placehold.co/600x400/f3f4f6/334155?text=Quality+Craftsmanship"
                 alt="Quality Craftsmanship"
                 className="rounded-2xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-500 ease-in-out"
               />
@@ -161,7 +194,7 @@ const App = () => {
               <Sun size={48} className="text-indigo-500 mx-auto mb-4 animate-pulse" />
               <h3 className="text-2xl font-semibold mb-4 text-gray-800">Sustainability</h3>
               <p className="text-gray-600">
-                We are committed to eco-friendly sourcing and production methods to create beautiful, sustainable furnishings for a better future.
+                We are committed to eco-friendly  production methods to create beautiful, sustainable furnishings for a better future.
               </p>
             </div>
             <div className="bg-white p-8 rounded-3xl shadow-xl transform hover:scale-105 transition-transform duration-300 border border-gray-200">
@@ -184,36 +217,29 @@ const App = () => {
 
       {/* Meet the Founders Section */}
       <section className="bg-gray-100 py-20 px-4 md:px-12">
-        <div className="container mx-auto max-w-6xl animate-on-scroll">
-          <h2 className="text-4xl font-bold text-center mb-16 text-indigo-600">Meet the Founders</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 text-center items-center">
-            <div className="space-y-4">
-              <img
-                src="https://placehold.co/200x200/94a3b8/e2e8f0?text=Founder+1"
-                alt="Founder 1"
-                className="rounded-full w-48 h-48 mx-auto shadow-xl"
-              />
-              <h3 className="text-2xl font-semibold text-gray-800">Nitesh Suman</h3>
-              <p className="text-lg italic text-gray-500">Founder & CEO</p>
-              <p className="text-gray-600 max-w-lg mx-auto">
-                Nitesh brings over 30 years of experience in the home furnishings industry, with a passion for sustainable materials and timeless design. His vision is to create spaces that feel like home.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <img
-                src="https://placehold.co/200x200/94a3b8/e2e8f0?text=Founder+2"
-                alt="Founder 2"
-                className="rounded-full w-48 h-48 mx-auto shadow-xl"
-              />
-              <h3 className="text-2xl font-semibold text-gray-800">Shraddha Suman</h3>
-              <p className="text-lg italic text-gray-500">Co-Founder & Design Head</p>
-              <p className="text-gray-600 max-w-lg mx-auto">
-                Shraddha's expertise in design and aesthetics has been key to Surya Foam & Fabrics' success. She believes that every piece of furniture should tell a story and reflect a unique personality.
-              </p>
-            </div>
+        <div className="container mx-auto max-w-4xl animate-on-scroll text-center">
+          <h2 className="text-4xl font-bold text-center mb-16 text-indigo-600">
+            Meet the Founder
+          </h2>
+          <div className="space-y-4">
+            <img
+              src="https://placehold.co/200x200/94a3b8/e2e8f0?text=Founder+1"
+              alt="Founder 1"
+              className="rounded-full w-48 h-48 mx-auto shadow-xl"
+            />
+            <h3 className="text-2xl font-semibold text-gray-800">
+              Nanji Ratanshi Ramani
+            </h3>
+            <p className="text-lg italic text-gray-500">Founder & CEO</p>
+            <p className="text-gray-600 max-w-lg mx-auto">
+              Nanji brings over 30 years of experience in the home furnishings
+              industry, with a passion for sustainable materials and timeless design.
+              His vision is to create spaces that feel like home.
+            </p>
           </div>
         </div>
       </section>
+
 
       {/* Contact Section */}
       <section className="bg-white py-20 px-4 md:px-12">
@@ -304,15 +330,15 @@ const App = () => {
               <div className="space-y-4 text-gray-500">
                 <div className="flex items-center gap-4">
                   <MapPin size={24} className="text-indigo-500" />
-                  <p>Surya Foam And Fabrics, A-3, Bhausaheb Vartak Udyog Nagar, Nashik - 422003, Maharashtra, India</p>
+                  <p>Surya Foam And Fabrics, F265+VVW, Ganesh Rd, Hanuman Wadi, Chalisgaon, Maharashtra 424101</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail size={24} className="text-indigo-500" />
-                  <p>suryatextiles@email.com</p>
+                  <p>suryafoam933@yahoo.in</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone size={24} className="text-indigo-500" />
-                  <p>+91 98765 43210</p>
+                  <p>+91 9890199201</p>
                 </div>
               </div>
             </div>

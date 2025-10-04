@@ -1,5 +1,4 @@
-// src/components/Home.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCategories from "../components/ProductCategories";
 import Slider from "../components/Slider";
 import FeaturesGrid from "../components/FeaturesGrid";
@@ -26,24 +25,39 @@ const features = [
 ];
 
 const Home = () => {
+  useEffect(() => {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="bg-white font-sans min-h-screen">
       <Slider />
       {/* Features Section */}
-      <section className="bg-gray-50 py-12 md:py-16 px-4 md:px-12">
+      <section className="animate-on-scroll bg-gray-50 py-12 md:py-16 px-4 md:px-12">
         <div className="container mx-auto max-w-6xl">
           <FeaturesGrid features={features} />
         </div>
       </section>
 
       {/* About Section */}
-      <section className="bg-gray-50 py-8 md:py-12 px-4 md:px-12">
+      <section className="animate-on-scroll bg-gray-50 py-8 md:py-12 px-4 md:px-12">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center">
-            <h3 className="text-3xl sm:text-4xl font-bold text-orange-600 mb-4">
+            <h3 className="text-3xl sm:text-4xl font-bold text-orange-600 mb-4 animate-on-scroll">
               About <span className="text-gray-800">Surya Forms & Fabrics</span>
             </h3>
-            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed animate-on-scroll">
               At Surya Foam & Fabrics, we blend comfort with craftsmanship.
               Specializing in premium-quality mattresses, cushions, and upholstery
               fabrics, we are dedicated to enriching homes with comfort and
@@ -57,7 +71,7 @@ const Home = () => {
       </section>
       
       {/* Product Categories Section */}
-      <section className="bg-gray-50 py-12 md:py-16 px-4 md:px-12">
+      <section className="animate-on-scroll bg-gray-50 py-12 md:py-16 px-4 md:px-12">
         <div className="container mx-auto max-w-6xl flex justify-center">
           <ProductCategories />
         </div>

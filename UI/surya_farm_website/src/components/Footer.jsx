@@ -25,9 +25,9 @@ const Footer = () => {
 
         <div className="footer-section">
           <h4>Contact</h4>
-          <p>📞 +91-9999999999</p>
-          <p>📧 info@suryafarms.com</p>
-          <p>📍 Nashik, Maharashtra, India</p>
+          <p>📞 +91-9890199201</p>
+          <p>📧 suryafoam933@yahoo.in</p>
+          <p>📍 Chalisgoan, Maharashtra, India</p>
         </div>
 
       </div>

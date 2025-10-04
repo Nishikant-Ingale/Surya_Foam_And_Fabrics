@@ -1,3 +1,6 @@
+/* src/styles/FloatingButton.css */
+
+/* --- Existing Floating Button Styles (as provided) --- */
 .floating-button {
   position: fixed;
   right: 20px;
@@ -10,6 +13,7 @@
   justify-content: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
+  background-color: #25D366;
 }
 
 .floating-button:hover {
@@ -29,4 +33,204 @@
 .floating-button.instagram {
   bottom: 20px;
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+/* --- New Feedback Button and Prompt Styles --- */
+
+/* The feedback icon button */
+.floating-button.feedback {
+  bottom: 160px;
+  background-color: #5a67d8;
+}
+
+/* The message prompt container */
+.feedback-prompt-container {
+  position: fixed;
+  bottom: 168px;
+  right: 88px;
+  z-index: 99;
+  width: auto;
+  padding: 10px 18px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.5);
+  transform-origin: bottom right;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* The speech bubble pointer */
+.feedback-prompt-container::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  bottom: 20px; /* Adjust this value to align the pointer with the button */
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-left-color: #fff;
+  border-right: 0;
+  margin-left: -5px;
+  margin-bottom: -10px;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2)); /* Add a subtle shadow to the pointer */
+}
+
+.feedback-prompt-container.show {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.feedback-prompt-container p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.feedback-prompt-container .prompt-close-button {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  transition: color 0.2s;
+}
+
+.feedback-prompt-container .prompt-close-button:hover {
+  color: #333;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* --- Feedback Form Pop-up Container --- */
+.feedback-form-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+  z-index: 1000;
+  animation: fadeInForm 0.4s ease-out;
+}
+
+@keyframes fadeInForm {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.feedback-form-container .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6B7280;
+  transition: color 0.2s;
+}
+
+.feedback-form-container .close-button:hover {
+  color: #000;
+}
+
+/* --- Form Elements --- */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedback-form .form-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 8px;
+}
+
+.feedback-form .rating-container {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.feedback-form .star {
+  color: #D1D5DB;
+  transition: color 0.2s;
+}
+
+.feedback-form .star.filled {
+  color: #FFC107;
+}
+
+.feedback-form .feedback-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: vertical;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.feedback-form .feedback-textarea:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.feedback-form .submit-button {
+  background-color: #4CAF50;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.feedback-form .submit-button:hover:not(:disabled) {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.feedback-form .submit-button:disabled {
+  background-color: #9CA3AF;
+  cursor: not-allowed;
+}
+
+.feedback-form .status-message {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.feedback-form .status-message.success {
+  color: #34D399;
+}
+
+.feedback-form .status-message.error {
+  color: #EF4444;
 }

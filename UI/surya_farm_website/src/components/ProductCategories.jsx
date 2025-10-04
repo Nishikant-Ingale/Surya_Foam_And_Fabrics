@@ -1,5 +1,6 @@
 import "../styles/ProductCategories.css";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 
 
 const categories = [
@@ -45,6 +46,21 @@ const ProductCategories = () => {
     // You can pass category name or id depending on your route structure
     navigate(`/ui/products`); 
   };
+
+  useEffect(() => {
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="product-category-section">
