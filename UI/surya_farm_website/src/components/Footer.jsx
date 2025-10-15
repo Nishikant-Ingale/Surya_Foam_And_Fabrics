@@ -8,8 +8,8 @@ const Footer = () => {
       <div className="footer-container">
 
         <div className="footer-section">
-          <h3>Surya Farms</h3>
-          <p>Bringing you the freshest farm products with love and care.</p>
+          <h3>Surya Foam And Fabrics</h3>
+          <p>Where every fabric tells a story of care and style.</p>
         </div>
 
         <div className="footer-section">
@@ -33,7 +33,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Surya Farms. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Surya Foam and Fabrics. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 
 // Import all images inside assets/shop_images
-const images = import.meta.glob("/public/images/shop_images/*.{png,jpg,jpeg,svg}", { eager: true });
+const images = import.meta.glob("../assets/shop_images/*.{png,jpg,jpeg,svg}", { eager: true });
 
 const Gallery = () => {
   const imagePaths = Object.values(images).map((img) => img.default || img);
