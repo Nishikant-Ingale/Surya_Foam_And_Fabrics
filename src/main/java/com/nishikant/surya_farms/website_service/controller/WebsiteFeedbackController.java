@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/website/feedbacks")
-public class FeedbackController {
+public class WebsiteFeedbackController {
 
     @PostMapping()
     public Feedback saveFeedbacks(@RequestBody Feedback feedback) {
